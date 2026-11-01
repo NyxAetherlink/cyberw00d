@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Copyright 2014 Dustin Kirkland <dustin.kirkland@gmail.com>
 #
@@ -14,13 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v hexdump >/dev/null 2>&1 || exit 1
-command -v ccze >/dev/null 2>&1 || exit 1
-
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
-while true; do
-	for f in $(ls /usr/bin/ | sort -R); do
-		head -c 4096 "/usr/bin/$f" | hexdump -C | ccze -A -c default=green -c dir="bold green"
-		sleep 0.7
-	done
-done
+command -v mplayer >/dev/null 2>&1 || exit 1
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
+PKG=cyberw00d
+dir="$(dirname $0)/../../share/$PKG"
+DISPLAY= mplayer -vo caca -nosound -loop 0 -ss $((RANDOM % 100)) -speed 100 $dir/soundwave.mp4

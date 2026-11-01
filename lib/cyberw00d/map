@@ -14,9 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v atop >/dev/null 2>&1 || exit 1
+command -v jp2a >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
+
+PKG=cyberw00d
+dir="$(dirname $0)/../../share/$PKG"
 while true; do
-	atop
+	jp2a --colors -z --fill "$dir/map.jpg"
+	sleep 1
 done

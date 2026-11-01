@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
-# Copyright 2014 Dustin Kirkland <dustin.kirkland@gmail.com>
+# Copyright 2014-2023 Dustin Kirkland <dustin.kirkland@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,14 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v man >/dev/null 2>&1 || exit 1
-command -v ccze >/dev/null 2>&1 || exit 1
+# locate would be faster, but find is more universal
+command -v find >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+# try to render images to ascii art
+command -v jp2a >/dev/null 2>&1 || exit 1
+
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
 while true; do
-	FILES=$(ls /usr/share/man/man1/ | sort -R | sed "s/\.1\.gz.*$//" | head -n 4096)
+	FILES=$(find /usr -readable -size +0 -type f -name \*.jpg 2>/dev/null | sort -R)
 	for f in $FILES; do
-		man "$f" | ccze -A
-		sleep 0.2
+		clear
+		jp2a --colors --term-fit "$f"
+		sleep 0.57
 	done
 done

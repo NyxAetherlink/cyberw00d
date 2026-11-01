@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# cyberw00d fastfetch widget - system info with cyberpunk ascii
+
+command -v fastfetch >/dev/null 2>&1 || exit 1
+
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
+while true; do
+	clear
+	fastfetch --logo-color-1 cyan --logo-color-2 magenta --color-keys cyan --color-title magenta --separator ' > '
+	sleep 8
+done

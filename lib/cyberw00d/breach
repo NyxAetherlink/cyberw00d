@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# cyberw00d breach widget - fake cyberpunk intrusion logs
+
+CYBER_CYAN='\033[0;36m'
+CYBER_MAGENTA='\033[0;35m'
+CYBER_BLUE='\033[0;34m'
+CYBER_RED='\033[0;31m'
+CYBER_RESET='\033[0m'
+
+TARGETS="corpo_mainframe neural_net defense_grid ice_wall data_vault uplink_node"
+ACTIONS="bypassing decrypting injecting flooding cloning overwriting"
+STATUSES="ACCESS_DENIED BREACH_DETECTED BYPASSED COMPROMISED ROOT_ACCESS"
+
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
+while true; do
+	clear
+	date "+%Y-%m-%d %H:%M:%S.%3N"
+	echo "=========================================="
+	echo ""
+	for i in $(seq 1 $((RANDOM % 12 + 6))); do
+		target=$(echo "$TARGETS" | tr ' ' '\n' | sort -R | head -n1)
+		action=$(echo "$ACTIONS" | tr ' ' '\n' | sort -R | head -n1)
+		status=$(echo "$STATUSES" | tr ' ' '\n' | sort -R | head -n1)
+		port=$((RANDOM % 65535 + 1))
+		ip="$(($RANDOM % 256)).$(($RANDOM % 256)).$(($RANDOM % 256)).$(($RANDOM % 256))"
+		
+		case "$status" in
+			ACCESS_DENIED) color="$CYBER_RED" ;;
+			BREACH_DETECTED) color="$CYBER_MAGENTA" ;;
+			ROOT_ACCESS) color="$CYBER_CYAN" ;;
+			*) color="$CYBER_BLUE" ;;
+		esac
+		
+		printf "${CYBER_CYAN}[*]${CYBER_RESET} %s target: %s:%d from %s ... ${color}%s${CYBER_RESET}\n" \
+			"$action" "$target" "$port" "$ip" "$status"
+		sleep 0.15
+	done
+	echo ""
+	echo "=========================================="
+	sleep 2
+done

@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/bin/sh
 #
-# Copyright 2026 Dustin Kirkland <dustin.kirkland@gmail.com>
+# Copyright 2014 Dustin Kirkland <dustin.kirkland@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v figlet >/dev/null 2>&1 || exit 1
+# detect if apg is installed
+command -v apg >/dev/null 2>&1 || exit 1
+# detect if ccze is installed
+command -v ccze >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
 while true; do
-	word=$(printf "HACKED\nENCRYPTED\nDECRYPTING\nFIREWALL\nOVERRIDE\nSCANNING\nDOWNLOAD\nBYPASSING\nCRACKING\nINTERCEPT\nPAYLOAD\nACCESS\nDENIED\nGRANTED\nLOCKED\nTRACING\nBREACH\nENABLED\nSYNCING\nUPLINK" | sort -R | head -n1)
-	clear
-	figlet "$word"
-	sleep 2
+	apg -qlt -c /dev/urandom -n 1 -m 4 | ccze -A -c default=$(printf "magenta\ncyan\nblue" | sort -R | head -n1)
+	sleep 0.2
 done

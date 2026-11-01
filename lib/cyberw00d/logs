@@ -14,18 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v tree >/dev/null 2>&1 || exit 1
+command -v ccze >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
-DIRS="/sys /dev"
-
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
 while true; do
-	for d1 in $DIRS; do
-		for d2 in $d1/*; do
-			if [ -x $d2 ]; then
-				tree $d2
-				sleep 0.5
-			fi
-		done
+	LOGS=$(find /var/log -type f -name "*.log" 2>/dev/null | head -n 4096 | sort -R)
+	for log in $LOGS; do
+		cat "$log" 2>/dev/null | ccze -A
+		sleep 0.5
 	done
 done

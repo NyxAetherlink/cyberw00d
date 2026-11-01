@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# detect if apg is installed
-command -v apg >/dev/null 2>&1 || exit 1
-# detect if ccze is installed
+command -v stat >/dev/null 2>&1 || exit 1
 command -v ccze >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
 while true; do
-	apg -qlt -c /dev/urandom -n 1 -m 4 | ccze -A -c default=$(printf "red\ngreen\nyellow\nblue\nmagenta\ncyan" | sort -R | head -n1)
-	sleep 0.2
+	for f in $(find /sys /dev 2>/dev/null | head -n 4096 | sort -R); do
+		stat "$f" | ccze -A -c default=cyan
+		sleep 0.8
+	done
 done

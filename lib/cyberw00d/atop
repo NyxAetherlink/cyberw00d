@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright 2014 Dustin Kirkland <dustin.kirkland@gmail.com>
+# Copyright 2019 Dustin Kirkland <dustin.kirkland@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v cmatrix >/dev/null 2>&1 || exit 1
+command -v atop >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
 while true; do
-	cmatrix -b
+	atop
 done

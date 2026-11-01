@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright 2019 Dustin Kirkland <dustin.kirkland@gmail.com>
+# Copyright 2014 Dustin Kirkland <dustin.kirkland@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v jp2a >/dev/null 2>&1 || exit 1
+command -v errno >/dev/null 2>&1 || exit 1
+command -v ccze >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
-
-PKG=hollywood
-dir="$(dirname $0)/../../share/$PKG"
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
 while true; do
-	jp2a --colors -z --fill "$dir/map.jpg"
-	sleep 1
+	errno --list | sort -R | ccze -A
+	sleep 0.6
 done

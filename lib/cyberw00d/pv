@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #
-# Copyright 2014 Dustin Kirkland <dustin.kirkland@gmail.com>
+# Copyright 2026 Dustin Kirkland <dustin.kirkland@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v ccze >/dev/null 2>&1 || exit 1
+command -v pv >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
 while true; do
-	LOGS=$(find /var/log -type f -name "*.log" 2>/dev/null | head -n 4096 | sort -R)
-	for log in $LOGS; do
-		cat "$log" 2>/dev/null | ccze -A
-		sleep 0.5
-	done
+	dd if=/dev/urandom bs=64K count=160 2>/dev/null | pv -pterb -s 10485760 -L 1M > /dev/null
+	sleep 1
 done

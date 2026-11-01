@@ -1,80 +1,65 @@
-# hollywood
+# cyberw00d
 
-Fill your console with Hollywood melodrama technobabble.
+> *"The future is already here — it's just not evenly distributed."*
 
-This utility splits your terminal into multiple panes of genuine technobabble, perfectly suitable for any Hollywood geek melodrama.  It is particularly suitable on any number of computer consoles in the background of any excellent schlock technothriller.
+Fill your console with neon-drenched technobabble and cyberpunk melodrama.
 
-For more information, visit [hollywood.computer](https://a.hollywood.computer/).
+`cyberw00d` is a fork of [Dustin Kirkland's hollywood](https://github.com/dustinkirkland/hollywood), reborn with a synthwave soul. It splits your terminal into a grid of pulsing panes — each one dripping with cyan matrix rain, magenta hex dumps, and glitch-corrupted system logs. Perfect for netrunner cosplay, lofi coding sessions, or making your setup look like it belongs in Neo-Tokyo.
+
+---
 
 ## Quick Start
 
-Run in Docker (no installation needed):
+Run from source (no installation needed):
 
 ```bash
-docker run -it --rm cgr.dev/chainguard/hollywood
-```
-
-Install on Ubuntu/Debian:
-
-```bash
-sudo apt install hollywood
-```
-
-Install on [Chainguard OS](https://www.chainguard.dev/chainguard-os) (Wolfi):
-
-```bash
-apk add hollywood
+git clone https://github.com/NyxAetherlink/cyberw00d.git
+cd cyberw00d
+./bin/hollywood
 ```
 
 ## Usage
 
 ```bash
-hollywood                          # run with defaults
-hollywood -s 5                     # limit to 5 splits
-hollywood -d 30                    # rearrange panes every 30 seconds
-hollywood -s 8 -d 15               # combine options
+./bin/hollywood              # run with defaults
+./bin/hollywood -s 5         # limit to 5 splits
+./bin/hollywood -d 30        # rearrange panes every 30 seconds
+./bin/hollywood -s 8 -d 15   # combine options
 ```
 
-Press `Ctrl-C` to quit.
+Press `Ctrl-C` to jack out.
 
-## Samples
+## Cyberpunk Theme Changes
 
-- [YouTube stream](https://www.youtube.com/watch?v=18RSYZa58FE)
-- [MP4 download](https://drive.google.com/uc?id=1PK4IKYw_5R9D4BQEepmNmCbiWqSq4nks&export=download) (suitable as a Zoom/Meet background)
+This fork takes the original `hollywood` concept and pushes it into the neon-soaked sprawl:
 
-## As Seen On
-
-Hollywood has been spotted in the wild on television, in commercials, and across the internet:
-
-- [NBC News](https://www.nbcnews.com/tech/security/americans-are-getting-freaked-out-about-doing-stuff-internet-n574661)
-- [CNBC](https://www.cnbc.com/video/2020/06/17/cnbcs-disruptor-50-attabotics.html)
-- [Saturday Night Live](https://www.nbc.com/saturday-night-live/video/mr-robot/3108917)
-- [Netflix "Unit 42"](https://www.netflix.com/title/81027195)
-- [Yahoo Finance](https://finance.yahoo.com/news/mother-data-breaches-26-billion-173012707.html)
-- [Full Frontal with Samantha Bee](https://www.youtube.com/watch?v=C8AxAvh3-ck&t=54)
-- [Map Men](https://www.youtube.com/watch?v=yTyX_EJQOIU&t=323)
-- [Spy Ninjas](https://www.youtube.com/watch?v=JM9u9ehNscI&ab_channel=PROJECTZORGO-SPYNINJAHacker&t=43)
-- [Experian](https://www.youtube.com/watch?v=vBEKs_Priu0)
-- [SentinelOne](https://twitter.com/DustinKirkland/status/1303879028886175745)
-- [SUSE parody music video](https://www.youtube.com/watch?v=b0tsZB_LEQk)
-- DEFCON music channel
-- [Texas A&M Foundation magazine](https://www.txamfoundation.com/Spring-2019/Cover-Feature.aspx)
+- **Neon tmux borders** — active panes glow cyan, inactive pulse magenta
+- **Cyan matrix rain** — `cmatrix` cycles through cyan, magenta, and electric blue
+- **Hex dumps in neon** — shifted from default green to cyber-cyan
+- **Monokai code highlighting** — source code rendered in dark synthwave colors
+- **Dracula bat theme** — syntax-highlighted files bathed in purple and pink
+- **Expanded figlet vocabulary** — 40+ cyberpunk terms: NETRUNNER, REPLICANT, FLATLINE, CHROME, ICE...
+- **3 new widgets**:
+  - `breach` — fake intrusion logs with randomized targets and access statuses
+  - `glitch` — terminal corruption effect with cyber-term glitching
+  - `fastfetch` — system info with cyan/magenta branding (if available)
 
 ## Widgets
 
-Hollywood includes 20 visual widgets that are randomly selected and arranged:
-
 | Widget | Description |
 |--------|-------------|
-| `apg` | Random password generation |
+| `apg` | Random password generation (cyberpunk palette) |
 | `atop` | Advanced system monitor |
-| `bat` | Syntax-highlighted source code |
+| `bat` | Syntax-highlighted source code (Dracula theme) |
 | `bmon` | Network bandwidth monitor |
-| `cmatrix` | Matrix-style digital rain |
-| `code` | Colorized source code display |
+| `breach` | **NEW** Fake intrusion/breach logs |
+| `cmatrix` | Matrix-style digital rain (cyan/magenta/blue) |
+| `code` | Colorized source code (Monokai theme) |
 | `errno` | Scrolling error code definitions |
-| `figlet` | Large ASCII text banners |
-| `hexdump` | Hex dump of binary files |
+| `fastfetch` | **NEW** System info with cyberpunk colors |
+| `figlet` | Large ASCII text banners (cyberpunk vocabulary) |
+| `glitch` | **NEW** Terminal glitch corruption effect |
+| `hexdump` | Hex dump of binary files (cyan) |
 | `htop` | Interactive process viewer |
 | `jp2a` | JPEG to ASCII art conversion |
 | `logs` | Colorized system log files |
@@ -83,34 +68,14 @@ Hollywood includes 20 visual widgets that are randomly selected and arranged:
 | `mplayer` | Video to ASCII art animation |
 | `pv` | Data transfer progress bars |
 | `speedometer` | Network traffic graphs |
-| `sshart` | SSH key fingerprint art |
-| `stat` | File and device statistics |
-| `tree` | Directory tree visualization |
+| `sshart` | SSH key fingerprint art (magenta) |
+| `stat` | File and device statistics (cyan) |
+| `tree` | Directory tree visualization (colorized) |
 
-## Security Note
+## Upstream
 
-Some widgets display real system information (processes, logs, network stats, file system details) that could be sensitive.  For demonstrations or presentations, consider running in a container:
-
-```bash
-docker run -it --rm cgr.dev/chainguard/hollywood
-```
-
-## Contributing
-
-Widget design rules:
-
-- Must work as a non-root user
-- Must display information indefinitely
-- Must not exhaust memory or overload the system
-- Must not be too egregious with I/O
-- Must not require outbound internet access
-
-## Packages
-
-- [Source code](https://github.com/dustinkirkland/hollywood)
-- [Ubuntu](http://pad.lv/u/hollywood)
-- [Debian](https://packages.qa.debian.org/h/hollywood.html)
+This fork is based on [hollywood](https://github.com/dustinkirkland/hollywood) by Dustin Kirkland. All original widgets and core logic are preserved; only colors, branding, and a few additions have been modified.
 
 ## License
 
-Apache-2.0.  See the [LICENSE](LICENSE) file or [apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0).
+Apache-2.0. See the [LICENSE](LICENSE) file or [apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0).

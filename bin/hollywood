@@ -17,13 +17,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PKG="hollywood"
+PKG="cyberw00d"
 # Improved cleanup: kill the tmux session and all child processes
 cleanup() {
 	# Kill the tmux session if it exists
 	tmux kill-session -t $PKG >/dev/null 2>&1
-	# Kill any remaining hollywood widget processes
-	pkill -9 -f "lib/hollywood/" >/dev/null 2>&1
+	# Kill any remaining cyberw00d widget processes
+	pkill -9 -f "lib/cyberw00d/" >/dev/null 2>&1
 	exit 0
 }
 trap cleanup INT TERM EXIT
@@ -98,7 +98,12 @@ fi
 
 tmux new-window -n $PKG "$WIDGET_DIR/$widget1" \; \
 	set-option -g pane-active-border-bg "default" \; \
-	set-option -g pane-active-border-fg "default" >/dev/null 2>&1
+	set-option -g pane-active-border-fg "cyan" \; \
+	set-option -g pane-border-fg "magenta" \; \
+	set-option -g status-bg "black" \; \
+	set-option -g status-fg "cyan" \; \
+	set-option -g window-status-current-bg "magenta" \; \
+	set-option -g window-status-current-fg "black" >/dev/null 2>&1
 
 spin_up
 

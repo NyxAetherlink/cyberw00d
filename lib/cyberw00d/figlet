@@ -14,10 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v pv >/dev/null 2>&1 || exit 1
+command -v figlet >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
 while true; do
-	dd if=/dev/urandom bs=64K count=160 2>/dev/null | pv -pterb -s 10485760 -L 1M > /dev/null
-	sleep 1
+	word=$(printf "NEON\nCYBER\nSYNTH\nGLITCH\nWIRED\nGHOST\nPULSE\nDRIFT\nVOID\nFLUX\nSHADE\nREPLICANT\nNETRUNNER\nCORPO\nFIXER\nRIPPER\nCHROME\nICE\nBURN\nJACK\nFLATLINE\nBOOST\nHACKED\nENCRYPTED\nDECRYPTING\nFIREWALL\nOVERRIDE\nSCANNING\nDOWNLOAD\nBYPASSING\nCRACKING\nINTERCEPT\nPAYLOAD\nACCESS\nDENIED\nGRANTED\nLOCKED\nTRACING\nBREACH\nENABLED\nSYNCING\nUPLINK" | sort -R | head -n1)
+	clear
+	figlet "$word"
+	sleep 2
 done

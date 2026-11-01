@@ -14,18 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v ssh-keygen >/dev/null 2>&1 || exit 1
-command -v ccze >/dev/null 2>&1 || exit 1
+command -v tree >/dev/null 2>&1 || exit 1
 
-tmpdir=$(mktemp -d)
-trap "rm -rf $tmpdir 2>/dev/null; pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
+DIRS="/sys /dev"
+
 while true; do
-	tmpfile=$(mktemp -p "$tmpdir")
-	rm -f "$tmpfile"
-	art=$(ssh-keygen -vvv -t ed25519 -N "" -f "$tmpfile")
-	rm -f "$tmpfile" "$tmpfile.pub"
-	wait
-	clear
-	echo "$art" | ccze -A -c default=red
-	sleep 3 &
+	for d1 in $DIRS; do
+		for d2 in $d1/*; do
+			if [ -x $d2 ]; then
+				tree -C $d2
+				sleep 0.5
+			fi
+		done
+	done
 done

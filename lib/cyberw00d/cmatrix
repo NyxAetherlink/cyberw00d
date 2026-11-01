@@ -14,11 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-command -v errno >/dev/null 2>&1 || exit 1
-command -v ccze >/dev/null 2>&1 || exit 1
+command -v cmatrix >/dev/null 2>&1 || exit 1
 
-trap "pkill -9 -f lib/hollywood/ >/dev/null 2>&1; exit" INT
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
+CYBER_COLORS="cyan magenta blue"
 while true; do
-	errno --list | sort -R | ccze -A
-	sleep 0.6
+	color=$(echo "$CYBER_COLORS" | tr ' ' '\n' | sort -R | head -n1)
+	cmatrix -b -C "$color"
 done

@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# cyberw00d glitch widget - terminal glitch corruption effect
+
+GLITCH_CHARS="!@#$%^&*()_+-=[]{}|;\":,./<>?~\\"
+CYBER_TERMS="NEON SYNTH WIRED GHOST PULSE DRIFT VOID FLUX SHADE CHROME ICE BURN"
+
+trap "pkill -9 -f lib/cyberw00d/ >/dev/null 2>&1; exit" INT
+
+rand_string() {
+	len=$1
+	tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c "$len"
+}
+
+glitch_line() {
+	term=$(echo "$CYBER_TERMS" | tr ' ' '\n' | sort -R | head -n1)
+	glitched=""
+	for i in $(seq 1 ${#term}); do
+		char=$(echo "$term" | cut -c$i)
+		if [ "$((RANDOM % 3))" -eq 0 ]; then
+			glitched="${glitched}$(echo "$GLITCH_CHARS" | fold -w1 | sort -R | head -n1)"
+		else
+			glitched="${glitched}${char}"
+		fi
+	done
+	echo "$glitched"
+}
+
+while true; do
+	clear
+	for i in $(seq 1 $((RANDOM % 8 + 4))); do
+		prefix=$(rand_string 6)
+		glitched=$(glitch_line)
+		suffix=$(rand_string 10)
+		printf "\033[0;36m%s\033[0m \033[0;35m%s\033[0m \033[0;34m%s\033[0m\n" "$prefix" "$glitched" "$suffix"
+		sleep 0.08
+	done
+	sleep 1.5
+done
